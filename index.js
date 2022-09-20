@@ -11,9 +11,7 @@ import { checkAuth, handleValidationErrors } from './utils/index.js';
 import { UserController, PostController } from './controllers/index.js';
 
 mongoose
-  .connect(
-    'mongodb+srv://admin:wwwwwww@cluster0.uzary4i.mongodb.net/blog?retryWrites=true&w=majority'
-  )
+  .connect(process.env.MONGO)
   .then(() => {
     console.log('Mongo started');
   })
@@ -77,7 +75,7 @@ app.patch(
   PostController.update
 );
 
-app.listen(7777, (err) => {
+app.listen(process.env.PORT || 7777, (err) => {
   if (err) {
     return console.log(err);
   }
